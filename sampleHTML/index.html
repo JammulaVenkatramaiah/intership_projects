@@ -3,15 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My First Web Page</title>
+    <title>My Styled Web Page</title>
+    <!-- CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- JS (Optional, for interactive components) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .box {
+
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        p {
+            background: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background: #2ecc71;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        a:hover {
+            background: #27ae60;
+        }
+        /* For tablets (768px and below) */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            li {
+                padding: 8px;
+            }
+        }
+
+        /* For mobile (480px and below) */
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
+            }
+            h1 {
+                font-size: 20px;
+            }
+            p, li, a {
+                padding: 5px;
+            }
+        }
+        .container {
+            display: flex;
+            justify-content: center; /* Horizontal alignment */
+            align-items: center; /* Vertical alignment */
+            gap: 10px; /* Space between items */
+        }
+        .item {
+            flex: 1; /* Grow/shrink equally */
+            width: 200px;
+            height: 200px;
+            margin: 20px;
+            padding: 15px;
+            border: 2px solid #333;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        /* Default (Desktop) Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: #333;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
+/* Default: Mobile Styles */
+body { font-size: 14px; }
+
+/* Tablet */
+@media (min-width: 768px) {
+  body { font-size: 16px; }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  body { font-size: 18px; }
+}
+main {
+  padding: 20px;
+}
+@media (max-width: 768px) {
+  header {
+    padding: 15px;
+  }
+  nav a {
+    display: block; /* Stack links vertically */
+    margin: 5px 0;
+  }
+}
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 20px;
+  }
+  main {
+    padding: 10px;
+  }
+}
+        /* Responsive styles for smaller screens */
+        @media (max-width: 600px) {
+            .container {
+                flex-direction: column; /* Stack items vertically */
+            }
+            .item {
+                width: 100%; /* Full width on small screens */
+                margin: 10px 0; /* Adjust margin for vertical stacking */
+            }
+        }
+    </style>
 </head>
-<body>
+<body >
+    <header>
+    <h1>My Responsive Website</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+    </header>
+    <main>
+      <p>This page adjusts based on screen size!</p>
+    </main>
     <h1>Welcome to My Website!</h1>
-    <p>This is a paragraph of text.</p>
-    <ul>
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-    </ul>
+    <p>This is a paragraph of text. HTML and CSS are fun to learn!</p>
+    <div class="container">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+    </div>
+    <div class="container">
+        <div class="item" >4</div>
+        <div class="item" >5</div>
+        <div>
+            <div class="item">6</div>
+            <div class="item">7</div></div>
+    </div>
+    <a href="https://www.example.com">Visit Example.com</a>
 </body>
 </html>
