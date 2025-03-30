@@ -1,0 +1,30 @@
+/* Custom Styles */
+:root {
+    --primary: #0d6efd;
+    --dark: #212529;
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .hero-section {
+      padding: 60px 0;
+      text-align: center;
+    }
+    .hero-section img {
+      margin-top: 30px;
+    }
+  }
+  
+  /* Card Hover Effect */
+  .card {
+    transition: transform 0.3s;
+  }
+  .card:hover {
+    transform: translateY(-10px);
+  }
