@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive To-Do List App</title>
+    <!-- Tailwind CSS CDN for basic styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for the To-Do List App */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* Light gray background */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top for better layout on smaller screens */
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 2.5rem; /* Increased padding */
+            border-radius: 1rem; /* More rounded corners */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Stronger shadow */
+            width: 100%;
+            max-width: 500px;
+            margin-top: 3rem; /* Margin from top */
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 2rem;
+            font-weight: 700; /* Bold */
+            text-align: center;
+            font-size: 2.25rem; /* Larger font size */
+        }
+
+        .input-section {
+            display: flex;
+            gap: 0.75rem; /* Space between input and button */
+            margin-bottom: 2rem;
+        }
+
+        .input-section input[type="text"] {
+            flex-grow: 1;
+            padding: 0.75rem 1rem; /* Increased padding */
+            border: 2px solid #e2e8f0; /* Lighter border */
+            border-radius: 0.5rem; /* Rounded corners */
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s ease-in-out;
+        }
+
+        .input-section input[type="text"]:focus {
+            border-color: #6366f1; /* Indigo on focus */
+        }
+
+        .input-section button {
+            background-color: #6366f1; /* Indigo */
+            color: white;
+            padding: 0.75rem 1.5rem; /* Increased padding */
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600; /* Semi-bold */
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+            box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2); /* Shadow for button */
+        }
+
+        .input-section button:hover {
+            background-color: #4f46e5; /* Darker indigo on hover */
+            transform: translateY(-2px); /* Slight lift effect */
+        }
+
+        .todo-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .todo-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #f8fafc; /* Lighter background for items */
+            padding: 1rem 1.25rem; /* Increased padding */
+            border-radius: 0.75rem; /* More rounded corners */
+            margin-bottom: 0.75rem; /* Space between items */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Subtle shadow for items */
+            transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        .todo-item:hover {
+            background-color: #f1f5f9; /* Slightly darker on hover */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .todo-item span {
+            flex-grow: 1;
+            font-size: 1.1rem;
+            color: #4a5568; /* Darker text */
+            cursor: pointer; /* Indicate clickable */
+            user-select: none; /* Prevent text selection on double click */
+        }
+
+        .todo-item.completed span {
+            text-decoration: line-through;
+            color: #9ca3af; /* Lighter color for completed tasks */
+        }
+
+        .todo-item button.delete-btn {
+            background-color: #ef4444; /* Red */
+            color: white;
+            padding: 0.5rem 0.75rem; /* Smaller padding */
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 0.875rem; /* Smaller font */
+            font-weight: 600;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+            margin-left: 1rem; /* Space from text */
+        }
+
+        .todo-item button.delete-btn:hover {
+            background-color: #dc2626; /* Darker red on hover */
+            transform: translateY(-1px);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .container {
+                padding: 1.5rem;
+                margin-top: 1rem;
+            }
+            h1 {
+                font-size: 1.75rem;
+                margin-bottom: 1.5rem;
+            }
+            .input-section {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .input-section button {
+                width: 100%;
+            }
+            .todo-item {
+                flex-direction: column; /* Stack text and button */
+                align-items: flex-start;
+                padding: 0.75rem 1rem;
+            }
+            .todo-item span {
+                margin-bottom: 0.5rem;
+            }
+            .todo-item button.delete-btn {
+                width: 100%;
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+    <div class="container bg-white p-10 rounded-2xl shadow-xl w-full max-w-md">
+        <h1 class="text-4xl font-bold text-gray-800 mb-8 text-center">My To-Do List</h1>
+
+        <div class="input-section flex gap-3 mb-8">
+            <input type="text" id="taskInput" placeholder="Add a new task..."
+                   class="flex-grow p-3 border-2 border-gray-200 rounded-lg text-lg focus:outline-none focus:border-indigo-500 transition-colors">
+            <button id="addTaskBtn"
+                    class="bg-indigo-600 text-white px-6 py-3 rounded-lg text-lg font-semibold shadow-md hover:bg-indigo-700 transition-transform transform hover:-translate-y-1">
+                Add Task
+            </button>
+        </div>
+
+        <ul id="todoList" class="todo-list">
+            <!-- To-Do items will be added here by JavaScript -->
+        </ul>
+    </div>
+
+    <script>
+        // Get references to the DOM elements
+        const taskInput = document.getElementById('taskInput');
+        const addTaskBtn = document.getElementById('addTaskBtn');
+        const todoList = document.getElementById('todoList');
+
+        // Function to add a new task
+        function addTask() {
+            const taskText = taskInput.value.trim(); // Get input value and remove whitespace
+
+            // Check if the input is not empty
+            if (taskText === "") {
+                alert("Please enter a task!"); // Using alert for simplicity, but in a real app, use a custom modal.
+                return;
+            }
+
+            // Create new list item (<li>)
+            const listItem = document.createElement('li');
+            listItem.classList.add('todo-item', 'flex', 'items-center', 'justify-between', 'bg-gray-50', 'p-4', 'rounded-xl', 'mb-3', 'shadow-sm');
+
+            // Create a span for the task text
+            const taskSpan = document.createElement('span');
+            taskSpan.textContent = taskText;
+            taskSpan.classList.add('flex-grow', 'text-gray-700', 'text-lg', 'cursor-pointer');
+
+            // Add event listener to toggle 'completed' class on click
+            taskSpan.addEventListener('click', function() {
+                listItem.classList.toggle('completed');
+            });
+
+            // Create a delete button
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.classList.add('delete-btn', 'bg-red-500', 'text-white', 'px-4', 'py-2', 'rounded-lg', 'text-sm', 'font-semibold', 'hover:bg-red-600', 'transition-transform', 'transform', 'hover:-translate-y-0.5', 'ml-4');
+
+            // Add event listener to remove the task when delete button is clicked
+            deleteButton.addEventListener('click', function() {
+                todoList.removeChild(listItem); // Remove the parent list item
+            });
+
+            // Append the span and button to the list item
+            listItem.appendChild(taskSpan);
+            listItem.appendChild(deleteButton);
+
+            // Append the new list item to the to-do list (<ul>)
+            todoList.appendChild(listItem);
+
+            // Clear the input field
+            taskInput.value = '';
+        }
+
+        // Add event listener to the "Add Task" button
+        addTaskBtn.addEventListener('click', addTask);
+
+        // Allow adding task by pressing Enter key in the input field
+        taskInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                addTask();
+            }
+        });
+
+        // Initial tasks (optional)
+        // You can add some default tasks here if you want
+        // function addInitialTasks() {
+        //     const initialTasks = ["Learn HTML", "Style with CSS", "Master JavaScript"];
+        //     initialTasks.forEach(task => {
+        //         taskInput.value = task;
+        //         addTask();
+        //     });
+        // }
+        // window.onload = addInitialTasks; // Call this function when the page loads
+    </script>
+</body>
+</html>

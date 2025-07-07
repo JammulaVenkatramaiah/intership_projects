@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Basic Programs</title>
+    <script>
+        function calculateSum() {
+            var num1 = parseInt(document.getElementById("num1").value);
+            var num2 = parseInt(document.getElementById("num2").value);
+            var sum = num1 + num2;
+            document.getElementById("result").innerHTML = "The sum is: " + sum;
+        }
+    </script>   
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        input[type="number"] {
+            width: 100px;
+            padding: 5px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 5px 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }  
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Basic Program: Sum of Two Numbers</h1>
+    <label for="num1">Number 1:</label>
+    <input type="number" id="num1" required>
+    <label for="num2">Number 2:</label>
+    <input type="number" id="num2" required>
+    <button onclick="calculateSum()">Calculate Sum</button>
+    <div id="result"></div>
+</body>
+</html>
