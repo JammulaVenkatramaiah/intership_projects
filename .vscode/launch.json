@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "HelloworldapiApplication",
+            "request": "launch",
+            "mainClass": "com.example.helloworldapi.HelloworldapiApplication",
+            "projectName": "helloworldapi"
+        },
+        {
             "name": "Attach to Chrome",
             "port": 9222,
             "request": "attach",
@@ -20,4 +27,4 @@
         }
     ]
 
-}
+} 
