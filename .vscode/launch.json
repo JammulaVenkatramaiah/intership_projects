@@ -6,6 +6,19 @@
     "configurations": [
         {
             "type": "java",
+            "name": "TaskapiApplication",
+            "request": "launch",
+            "mainClass": "com.example.taskapi.TaskapiApplication"
+        },
+        {
+            "type": "java",
+            "name": "ProductApiApplication",
+            "request": "launch",
+            "mainClass": "com.example.product_api.ProductApiApplication",
+            "projectName": "product-api"
+        },
+        {
+            "type": "java",
             "name": "HelloworldapiApplication",
             "request": "launch",
             "mainClass": "com.example.helloworldapi.HelloworldapiApplication",
